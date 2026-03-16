@@ -1,0 +1,73 @@
+2026-03-15 21:43:26,811 - user_id=web question=hi path=greeting score=None answer=Hello! 👋 Welcome to Bali Legal Partner.
+
+We assist foreigners with:
+- Company setup (PT PMA)
+- Investor visas (KITAS)
+- Business licensing
+- Tax & accounting services
+
+How can I help you today?
+
+1️⃣ Open a company
+2️⃣ Investor visa
+3️⃣ Business licenses
+4️⃣ Accounting services
+2026-03-15 21:43:33,301 - user_id=web question=how are you path=rag_during_flow score=None answer=I'm a customer service assistant for Bali Legal Partner, here to help with your questions about company setup, business services, and investor visas in Indonesia.
+
+To proceed, could you please confirm which services you're interested in?
+2026-03-15 21:43:40,527 - user_id=web question=1 path=company_setup score=None answer=Company Setup (PT PMA) at Bali Legal Partner:
+• Cost: IDR 30,000,000
+• Processing time: 5 working days
+• Requirements: Two shareholders, passport copies, business activity description
+
+What type of business are you planning to start?
+2026-03-15 22:00:47,117 - user_id=123321331 question=how are you path=rag_during_flow score=None answer=I'm doing well, thank you for asking. We're here to help you with your business needs in Indonesia. Would you like to know more about our company setup services?
+2026-03-16 00:32:00,580 - user_id=web question=hi path=greeting score=None answer=Hello! 👋 Welcome to Bali Legal Partner.
+
+We assist foreigners with:
+- Company setup (PT PMA)
+- Investor visas (KITAS)
+- Business licensing
+- Tax & accounting services
+
+How can I help you today?
+
+1️⃣ Open a company
+2️⃣ Investor visa
+3️⃣ Business licenses
+4️⃣ Accounting services
+2026-03-16 00:32:20,946 - user_id=web question=Can foreigners operate villa rental businesses in Bali? path=faq_direct score=0.07458677887916565 answer=Yes, through a PMA company with proper licenses.
+2026-03-16 00:33:27,847 - user_id=web question=How many shareholders are required for a PMA company? path=faq_direct score=0.15936259925365448 answer=A minimum of two shareholders is required. Both shareholders can be foreigners.
+2026-03-16 00:33:44,613 - user_id=web question=how many shareholders are needed path=faq_direct score=0.42281389236450195 answer=Minimum two shareholders.
+2026-03-16 00:34:40,598 - user_id=web question=company shareholder obtain visa in indonesia? path=faq_direct score=0.10108265280723572 answer=Yes. Shareholders can apply for a 2-year Investor Visa (KITAS Investor).
+2026-03-16 00:35:05,640 - user_id=web question=what is KITAS investor? path=faq_direct score=0.45655763149261475 answer=KITAS is a 2-year investor visa that allows foreigners to live and work in Indonesia as a company shareholder. Cost is IDR 18,500,000.
+2026-03-16 00:35:30,578 - user_id=web question=how can we apply for it ? path=rag_during_flow score=None answer=You can send passport copies, company name options, and business description directly to Bali Legal Partner via WhatsApp or email.
+2026-03-16 00:35:56,690 - user_id=web question=how many visa types are in indonesia? path=rag_during_flow score=None answer=There are several types of visas in Indonesia, including: 
+- Tourist Visa (B-211) 
+- Social Visa (B-211) 
+- Business Visa (B-211) 
+- Investor Visa (KITAS Investor) 
+- Retirement Visa 
+- KITAP (permanent stay permit) 
+- and others.
+
+What type of visa are you interested in?
+2026-03-16 00:36:25,569 - user_id=web question=how can i invest in land in indonesia ? path=rag_during_flow score=None answer=Foreigners can invest in land in Indonesia through a PT PMA company. The company must be established with a minimum of 60% foreign ownership. The remaining 40% can be owned by an Indonesian partner.
+2026-03-16 00:37:10,098 - user_id=web question=i want to invest in land in indonesia as an indonesian citizen path=general score=None answer=As an Indonesian citizen, you can invest in land directly without establishing a PT PMA company. However, if you plan to invest in a business related to the land, such as a property development or construction company, you may need to establish a PT PMA company.
+
+Do you want to know more about the process of investing in land in Indonesia?
+2026-03-16 00:37:49,693 - user_id=web question=what is the capital of pakistan path=rag_during_flow score=None answer=I specialize in PT PMA company setup, investor visas, and business services in Indonesia. Can I help with those?
+2026-03-16 00:38:43,605 - user_id=web question=tell me about the business services in indonesia path=general score=0.7019742727279663 answer=Yes. Foreigners can establish a PT PMA (foreign-owned company) in Indonesia.
+2026-03-16 00:39:02,653 - user_id=web question=what is pt pma path=faq_direct score=0.41230088472366333 answer=A PT PMA is a foreign-owned company legally registered in Indonesia.
+2026-03-16 00:39:22,025 - user_id=web question=tell me more about it path=general score=None answer=Our services include 1 year free legal consultation and full compliance with Indonesian law. We also assist with company setup, investor visas, and business licensing. 
+
+Do you have a business idea in mind for Indonesia?
+2026-03-16 00:39:53,037 - user_id=web question=i want to open a food restaurant path=general score=None answer=Yes, foreigners can open restaurants in Indonesia. You'll need to obtain a business license and a food permit. We can assist with the process.
+
+Do you have a location in mind for your restaurant?
+2026-03-16 00:40:25,975 - user_id=web question=not now can you please suggest me the any good locations path=general score=None answer=Some popular locations for restaurants in Bali include Seminyak, Kuta, Ubud, and Canggu. These areas have a high foot traffic and are known for their dining scene.
+
+Would you like to know more about the licensing requirements for a restaurant in Bali?
+2026-03-16 00:53:02,923 - user_id=web question=Halo, saya membutuhkan informasi tentang layanan bisnis di Indonesia. path=general score=None answer=Selamat datang! Kami dapat membantu Anda dengan layanan bisnis di Indonesia. Kami menawarkan layanan setup perusahaan PT PMA, visa investor, dan lisensi bisnis. Kami juga menyediakan konsultasi hukum gratis selama 1 tahun.
+
+Apakah Anda ingin tahu lebih lanjut tentang proses setup perusahaan PT PMA?

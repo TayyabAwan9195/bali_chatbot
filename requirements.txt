@@ -1,0 +1,9 @@
+flask
+gunicorn
+groq
+sentence-transformers
+faiss-cpu
+python-dotenv
+pypdf2
+numpy
+requests
