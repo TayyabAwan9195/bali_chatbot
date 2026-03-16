@@ -1,9 +1,20 @@
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
 .env
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
+
+# Build files
 build/
 develop-eggs/
 dist/
@@ -24,10 +35,16 @@ wheels/
 *.db
 *.sqlite
 *.sqlite3
+leads.db
 
-# Cache and logs
+# Cache and embeddings
 cache/
+*.npy
+
+# Logs
 logs/
+chatbot.log
+*.log
 
 # Temporary files
 *.tmp
@@ -44,3 +61,8 @@ debug_*.py
 # OS files
 .DS_Store
 Thumbs.db
+
+# Test files
+test_*.py
+run_test.py
+list_models.py
