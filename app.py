@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, jsonify, redirect, url_for
 from datetime import datetime
 import sqlite3
 import json
+from twilio.twiml.messaging_response import MessagingResponse
 
 from core.chatbot import bot
 
@@ -129,7 +130,7 @@ def home():
             <h1>Welcome to Bali Legal Partner</h1>
             <p>Your trusted partner for business setup, legal services, and company registration in Indonesia</p>
             <div>
-                <a href="{url_for('ui')}" class="cta-button">
+                <a href="{url_for('chat')}" class="cta-button">
                     <i class="fas fa-comments"></i> Try Chat Interface
                 </a>
                 <a href="{url_for('admin_dashboard')}" class="cta-button">
@@ -174,7 +175,7 @@ def home():
             <h2>Ready to Start Your Business Journey?</h2>
             <p>Chat with our AI assistant or access the admin dashboard to manage leads and communications.</p>
             <div>
-                <a href="{url_for('ui')}" class="cta-button">
+                <a href="{url_for('chat')}" class="cta-button">
                     <i class="fas fa-robot"></i> Chat with AI Assistant
                 </a>
                 <a href="{url_for('admin_dashboard')}" class="cta-button">
@@ -205,209 +206,24 @@ def home():
 def favicon():
     return ('', 204)
 
+@app.route('/whatsapp', methods=['POST'])
+def whatsapp():
+    body = request.form.get('Body', '').strip()
+    sender = request.form.get('From', '').strip()
+    print(f"[WhatsApp] Incoming message from {sender}: {body}")
+
+    if not body:
+        return "", 400
+
+    reply_text = bot.get_response(user_id=sender or 'unknown', message=body)
+    response = MessagingResponse()
+    response.message(reply_text)
+    return str(response), 200, {'Content-Type': 'application/xml'}
+
 # simple web UI for manual testing with conversation history
 # chat_history = []  # list of (question, answer)
-chat_history = []  # list of {'type': 'user' or 'bot', 'text': str, 'time': str}
-
-@app.route('/ui', methods=['GET', 'POST'])
-def ui():
-    global chat_history
-    if request.method == 'POST':
-        question = request.form.get('question', '').strip()
-        if question:
-            # Add user message
-            chat_history.append({
-                'type': 'user',
-                'text': question,
-                'time': datetime.now().strftime('%H:%M')
-            })
-            # Get bot response
-            response = bot.get_response(user_id="web", message=question)
-            print(f"DEBUG: User question: {question}")
-            print(f"DEBUG: Bot response: {response}")
-            # Add bot message
-            chat_history.append({
-                'type': 'bot',
-                'text': response,
-                'time': datetime.now().strftime('%H:%M')
-            })
-            # Keep last 50 messages
-            if len(chat_history) > 50:
-                chat_history = chat_history[-50:]
-
-    # Build chat HTML
-    chat_html = ''
-    for msg in chat_history:
-        if msg['type'] == 'user':
-            chat_html += f'<div class="message user"><div class="bubble">{msg["text"]}</div><div class="time">{msg["time"]}</div></div>'
-        else:
-            chat_html += f'<div class="message bot"><div class="bubble">{msg["text"]}</div><div class="time">{msg["time"]}</div></div>'
-
-    return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bali Legal Partner Chatbot</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <style>
-        body {{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #e5ddd5;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }}
-        .header {{
-            background-color: #075e54;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }}
-        .chat-container {{
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }}
-        .message {{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }}
-        .message.user {{
-            align-items: flex-end;
-        }}
-        .bubble {{
-            max-width: 70%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            word-wrap: break-word;
-            position: relative;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            font-size: 0.95em;
-            line-height: 1.4;
-        }}
-        .message.bot .bubble {{
-            background-color: #343a40;
-            color: #ffffff;
-            border: 1px solid #495057;
-        }}
-        .message.user .bubble {{
-            background-color: #25d366;
-            color: #ffffff;
-        }}
-        .time {{
-            font-size: 0.7em;
-            color: #999;
-            margin-top: 4px;
-            font-weight: 400;
-        }}
-        .message.user .time {{
-            text-align: right;
-        }}
-        .input-container {{
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-        }}
-        .input-container input {{
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #ccc;
-            border-radius: 25px;
-            outline: none;
-            font-size: 1em;
-            background-color: #ffffff;
-        }}
-        .input-container input:focus {{
-            border-color: #25d366;
-        }}
-        .input-container button {{
-            padding: 12px 24px;
-            background-color: #25d366;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }}
-        .input-container button:hover {{
-            background-color: #128c7e;
-        }}
-        .input-container button:active {{
-            transform: scale(0.98);
-        }}
-        @media (max-width: 600px) {{
-            .bubble {{
-                max-width: 85%;
-            }}
-            .header {{
-                font-size: 1em;
-                padding: 8px 15px;
-            }}
-        }}
-        .typing {{
-            display: none;
-            font-style: italic;
-            color: #999;
-            padding: 10px;
-            text-align: center;
-        }}
-    </style>
-</head>
-<body>
-    <div class="header">
-        Bali Legal Partner Chatbot
-    </div>
-    <div class="chat-container" id="chat-container">
-        {chat_html}
-        <div class="typing" id="typing-indicator">Bot is typing...</div>
-    </div>
-    <form class="input-container" method="post" id="chat-form">
-        <input type="text" name="question" placeholder="Type a message..." required id="message-input">
-        <button type="submit">Send</button>
-    </form>
-    <script>
-        // Scroll to bottom on load
-        const chatContainer = document.getElementById('chat-container');
-        function scrollToBottom() {{
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }}
-        scrollToBottom();
-
-        // Auto-submit on Enter
-        document.getElementById('message-input').addEventListener('keypress', function(e) {{
-            if (e.key === 'Enter') {{
-                e.preventDefault();
-                this.form.submit();
-            }}
-        }});
-
-        // Show typing indicator on form submit
-        document.getElementById('chat-form').addEventListener('submit', function() {{
-            document.getElementById('typing-indicator').style.display = 'block';
-            scrollToBottom();
-        }});
-    </script>
-</body>
-</html>
-    """
+# Removed /ui route - using /chat as main interface
+chat_history = {}  # {user_id: [messages]}
 
 # Admin Dashboard
 @app.route('/admin')
@@ -451,16 +267,16 @@ def send_message():
     return "Error", 400
 
 # Test Chat Mode
+# This route is used by the web UI (and the JS frontend) for interactive testing.
 test_chat_history = {}  # {phone: [messages]}
 
 @app.route('/test_chat', methods=['GET', 'POST'])
 def test_chat():
-    phone = request.args.get('phone', '')
     if request.method == 'POST':
         data = request.get_json()
-        phone = data.get('phone', '')
         message = data.get('message', '')
-        if phone and message:
+        phone = data.get('phone', 'web')
+        if message:
             # Get bot response
             response = bot.get_response(user_id=phone, message=message)
             # Store in history
@@ -472,11 +288,17 @@ def test_chat():
             if len(test_chat_history[phone]) > 50:
                 test_chat_history[phone] = test_chat_history[phone][-50:]
             return jsonify({'response': response})
+    phone = request.args.get('phone', 'web')
     history = test_chat_history.get(phone, [])
     return render_template('test_chat.html', phone=phone, chat_history=history)
 
+@app.route('/chat', methods=['GET'])
+def chat():
+    # Keep this as a simple landing page for the chat UI (redirects to test_chat)
+    return redirect(url_for('test_chat'))
+
 # API Endpoints
-@app.route('/chat', methods=['POST'])
+@app.route('/api/chat', methods=['POST'])
 def chat_api():
     data = request.get_json()
     user_id = data.get('user_id', 'api')

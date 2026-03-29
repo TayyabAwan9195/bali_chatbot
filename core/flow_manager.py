@@ -3,6 +3,9 @@
 # PURPOSE: Business flow management and lead qualification
 # ============================================================
 
+# FlowManager is kept as fallback only.
+# Main conversation is handled by Groq (via core/rag_engine.py).
+
 from typing import Dict, Any
 from core.database import DBHelper
 from core.validators import (

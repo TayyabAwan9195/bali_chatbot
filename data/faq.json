@@ -159,6 +159,206 @@
       "question": "What is KITAP?",
       "answer": "KITAP is a permanent stay permit. After several years on a KITAS investor visa, you may qualify for a 5-year KITAP.",
       "keywords": "kitap, permanent stay, 5-year"
+    },
+    {
+      "question": "Can both shareholders be foreigners?",
+      "answer": "Yes. Both shareholders can be foreigners.",
+      "keywords": "both, shareholders, foreigners"
+    },
+    {
+      "question": "Is 100% foreign ownership allowed?",
+      "answer": "Yes, depending on the business sector. Many sectors allow 100% foreign ownership.",
+      "keywords": "100%, foreign, ownership, allowed"
+    },
+    {
+      "question": "Do I need an Indonesian partner?",
+      "answer": "No. Many sectors allow full foreign ownership without an Indonesian partner.",
+      "keywords": "indonesian, partner, needed"
+    },
+    {
+      "question": "Do I need to be in Indonesia to open a company?",
+      "answer": "No. The entire process can be done remotely.",
+      "keywords": "be, indonesia, open, company, remotely"
+    },
+    {
+      "question": "Will I receive original documents?",
+      "answer": "Yes. You will receive both soft copy and original hard copy documents.",
+      "keywords": "original, documents, receive"
+    },
+    {
+      "question": "What is NIB?",
+      "answer": "NIB is the Business Identification Number issued by the Indonesian government.",
+      "keywords": "nib, business identification number"
+    },
+    {
+      "question": "What is NPWP?",
+      "answer": "NPWP is the company tax number in Indonesia.",
+      "keywords": "npwp, tax number"
+    },
+    {
+      "question": "Can the investor visa be extended?",
+      "answer": "Yes. The investor visa can be extended.",
+      "keywords": "visa, extended, extend, renewal"
+    },
+    {
+      "question": "What bank balance is required for investor visa?",
+      "answer": "A minimum bank statement of USD 2,000 is required for the investor visa.",
+      "keywords": "bank, balance, required, visa, usd"
+    },
+    {
+      "question": "What businesses can foreigners do in Indonesia?",
+      "answer": "Foreigners can operate in many sectors including tourism, consulting, trading, technology, restaurants, villas, Airbnb, and travel agencies through a PT PMA company.",
+      "keywords": "businesses, foreigners, can, do, indonesia"
+    },
+    {
+      "question": "Can foreigners open restaurants in Indonesia?",
+      "answer": "Yes. Foreigners can open restaurants in Indonesia through a PT PMA company.",
+      "keywords": "foreigners, open, restaurants"
+    },
+    {
+      "question": "Can foreigners open villas in Indonesia?",
+      "answer": "Yes. Foreigners can open and operate villas through a PT PMA company with proper licenses.",
+      "keywords": "foreigners, open, villas"
+    },
+    {
+      "question": "Can foreigners do consulting businesses?",
+      "answer": "Yes. Consulting is open for foreign-owned PMA companies in Indonesia.",
+      "keywords": "foreigners, consulting, business"
+    },
+    {
+      "question": "Can foreigners open travel agencies?",
+      "answer": "Yes. Travel agencies are open for foreign-owned PMA companies.",
+      "keywords": "foreigners, travel, agencies"
+    },
+    {
+      "question": "Can foreigners own small retail shops?",
+      "answer": "No. Small retail shops such as warungs and kiosks are restricted for foreign ownership.",
+      "keywords": "foreigners, small, retail, shops, warungs"
+    },
+    {
+      "question": "Can foreigners run small construction companies?",
+      "answer": "No. Small-scale construction services are restricted for foreign ownership.",
+      "keywords": "foreigners, small, construction, companies"
+    },
+    {
+      "question": "Can foreigners operate traditional taxis?",
+      "answer": "No. Local transportation services are restricted for foreign ownership.",
+      "keywords": "foreigners, traditional, taxis, transportation"
+    },
+    {
+      "question": "Can foreigners own TV stations?",
+      "answer": "No. Traditional media including TV, radio, and newspapers are restricted for foreign ownership.",
+      "keywords": "foreigners, tv, stations, media"
+    },
+    {
+      "question": "What is IMB or PBG?",
+      "answer": "IMB/PBG is a Building Permit required for villa and accommodation businesses in Indonesia.",
+      "keywords": "imb, pbg, building permit"
+    },
+    {
+      "question": "What is NPWPD?",
+      "answer": "NPWPD is the local tax registration for hotel or restaurant taxes in Indonesia.",
+      "keywords": "npwpd, local tax, hotel, restaurant"
+    },
+    {
+      "question": "Can foreigners open company bank accounts?",
+      "answer": "Yes. Foreigners can open company bank accounts in Indonesia. Bali Legal Partner assists with this.",
+      "keywords": "foreigners, company, bank, accounts"
+    },
+    {
+      "question": "Do you assist with bank account opening?",
+      "answer": "Yes. Bank account assistance is included in the company setup package.",
+      "keywords": "assist, bank, account, opening"
+    },
+    {
+      "question": "Do companies need monthly tax reporting?",
+      "answer": "Yes. PMA companies must submit monthly tax reports in Indonesia.",
+      "keywords": "companies, monthly, tax, reporting"
+    },
+    {
+      "question": "Do you provide accounting services?",
+      "answer": "Yes. We provide monthly tax reporting, accounting, bookkeeping, payroll management, and annual tax reporting.",
+      "keywords": "accounting, services, bookkeeping"
+    },
+    {
+      "question": "What is LKPM?",
+      "answer": "LKPM is the quarterly investment report required for all PMA companies in Indonesia.",
+      "keywords": "lkpm, quarterly, investment, report"
+    },
+    {
+      "question": "Do companies need annual tax reporting?",
+      "answer": "Yes. Annual tax reporting is required for all PMA companies.",
+      "keywords": "annual, tax, reporting, companies"
+    },
+    {
+      "question": "Do I need an office address for my company?",
+      "answer": "Yes. A registered office address is required. Bali Legal Partner provides 3 months free virtual office with company setup.",
+      "keywords": "office, address, virtual, required"
+    },
+    {
+      "question": "Can foreigners buy property in Indonesia?",
+      "answer": "Foreigners can invest in property through specific ownership structures via a PT PMA company.",
+      "keywords": "foreigners, buy, property, indonesia"
+    },
+    {
+      "question": "Can PMA companies lease land?",
+      "answer": "Yes. PMA companies can lease land in Indonesia.",
+      "keywords": "pma, companies, lease, land"
+    },
+    {
+      "question": "Can PMA companies develop villas?",
+      "answer": "Yes. PMA companies can develop villas with proper permits.",
+      "keywords": "pma, companies, develop, villas"
+    },
+    {
+      "question": "Do you assist with villa permits?",
+      "answer": "Yes. We assist with all villa permits including TDUP, IMB/PBG, NIB, and NPWPD.",
+      "keywords": "villa, permits, tdup, imb"
+    },
+    {
+      "question": "Do you assist with alcohol licenses?",
+      "answer": "Yes. Bali Legal Partner assists with alcohol licenses.",
+      "keywords": "alcohol, licenses, permits"
+    },
+    {
+      "question": "How long does company setup take?",
+      "answer": "Company setup takes 5 working days.",
+      "keywords": "company, setup, time, days"
+    },
+    {
+      "question": "How long does visa processing take?",
+      "answer": "Investor visa processing takes 5 to 7 working days after company is established.",
+      "keywords": "visa, processing, time, days"
+    },
+    {
+      "question": "How long do business permits take?",
+      "answer": "Business permits typically take 2 to 6 weeks depending on approvals.",
+      "keywords": "business, permits, timeline, weeks"
+    },
+    {
+      "question": "How are you?",
+      "answer": "Hello! I am the Bali Legal Partner assistant. I help foreigners with PT PMA company setup, investor visas, and business services in Indonesia. How can I help you today?",
+      "keywords": "how are you, who are you, hello, hi, greetings"
+    },
+    {
+      "question": "Where do I send my documents?",
+      "answer": "Please send your passport copies and company name directly to our team via WhatsApp or email. Our team will guide you through the next steps.",
+      "keywords": "send, documents, where, submit, passport"
+    },
+    {
+      "question": "Are there hidden fees?",
+      "answer": "No hidden fees. IDR 30,000,000 is the complete all-inclusive fee. It includes notary services, government registration, NIB, NPWP, bank account assistance, and all company documents.",
+      "keywords": "hidden, fees, extra, charges, total"
+    },
+    {
+      "question": "How do I know Bali Legal Partner is trustworthy?",
+      "answer": "Bali Legal Partner has assisted many international clients with company setup, investor visas, and business licensing in Indonesia. We provide 1 year free legal consultation and ensure full compliance with Indonesian law.",
+      "keywords": "trustworthy, reliable, trusted, experience, legitimate"
+    },
+    {
+      "question": "How much for company and visa together?",
+      "answer": "The combined cost is IDR 48,500,000. This includes IDR 30,000,000 for company setup and IDR 18,500,000 for the investor visa.",
+      "keywords": "company, visa, together, combined, total, both"
     }
   ]
 }

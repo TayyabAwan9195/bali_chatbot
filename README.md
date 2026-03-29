@@ -48,7 +48,7 @@ bali_chatbot/
 * Combines retrieved context with user questions and sends to an LLM (Groq by default) for a generative answer.
 * Qualification flow with sales prompts.
 * Logging of every interaction (`logs/chatbot.log`).
-* Web UI for manual testing (`/ui`) with history.
+* Web UI for live chat (`/chat`) with history.
 * Flask webhook for Twilio WhatsApp (`/whatsapp`).
 * Graceful fallback and domain-specific guidance.
 * Simple production improvements (error handlers, debug off).
@@ -97,7 +97,7 @@ Open your browser and navigate to:
 ```
 http://localhost:5000/
 ```
-Click the link to `/ui` or go directly to `/ui`. Type questions in the box; answers and conversation history appear below.
+Click the link to `/chat` or go directly to `/chat`. Type questions in the box; answers and conversation history appear below.
 
 ## RAG and LLM setup
 
@@ -115,7 +115,7 @@ Configure Twilio to POST incoming messages to `https://<your-host>/whatsapp`. Th
 ## Production Notes
 
 * The Flask app runs with `debug=False` and handles exceptions gracefully.
-* `chatbot.log` records timestamped interactions and errors.
+* `logs/chatbot.log` records timestamped interactions and errors.
 * The search engine returns the closest match even if confidence is low; the bot suggests possible answers and prompts for rephrasing.
 * Unrelated questions yield a polite domain-specific guidance message.
 * For deployment, consider using WSGI servers like Gunicorn or uWSGI, containerization, HTTPS, and rate limiting.

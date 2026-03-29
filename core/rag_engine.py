@@ -4,7 +4,6 @@
 # ============================================================
 
 import logging
-import os
 from typing import List, Optional
 from groq import Groq
 from core.config import (
@@ -19,6 +18,43 @@ from core.config import (
 # --- Client setup ---
 client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
+
+def _load_knowledge_base() -> str:
+    import json
+    from pathlib import Path
+
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+    knowledge = []
+
+    # Load chunks
+    try:
+        chunks_file = PROJECT_ROOT / "data" / "chunks.json"
+        if chunks_file.exists():
+            data = json.loads(chunks_file.read_text(encoding="utf-8"))
+            for chunk in data.get("chunks", [])[:15]:
+                knowledge.append(str(chunk))
+    except Exception as e:
+        logging.warning(f"Could not load chunks: {e}")
+
+    # Load FAQs
+    try:
+        faq_file = PROJECT_ROOT / "data" / "faq.json"
+        if faq_file.exists():
+            data = json.loads(faq_file.read_text(encoding="utf-8"))
+            for faq in data.get("faq", [])[:25]:
+                knowledge.append(
+                    f"Q: {faq.get('question', '')}\n"
+                    f"A: {faq.get('answer', '')}"
+                )
+    except Exception as e:
+        logging.warning(f"Could not load FAQ: {e}")
+
+    return "\n\n".join(knowledge)
+
+
+# Load once at startup
+_KNOWLEDGE_BASE = _load_knowledge_base()
+
 # --- Main function ---
 def generate_with_context(
     question: str,
@@ -28,10 +64,11 @@ def generate_with_context(
     full_context = "\n\n".join(contexts)
 
     # Build messages
+    system_prompt = SYSTEM_PROMPT.replace("{knowledge_base}", _KNOWLEDGE_BASE)
     messages = [
         {
             "role": "system",
-            "content": SYSTEM_PROMPT,
+            "content": system_prompt,
         }
     ]
 
@@ -45,8 +82,8 @@ def generate_with_context(
         {
             "role": "user",
             "content": (
-                f"Context:\n{full_context}\n\n"
-                f"Question:\n{question}"
+                f"Relevant context:\n{full_context}\n\n"
+                f"User message: {question}"
             ),
         }
     )
