@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, jsonify, redirect, url_for
 from datetime import datetime
 import sqlite3
 import json
+from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 
 from core.chatbot import bot
@@ -12,10 +13,47 @@ app = Flask(__name__, template_folder='templates')
 # Database helper (supports env var override for hosting)
 DB_FILE = os.getenv('DATABASE_FILE', 'leads.db')
 
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_WHATSAPP_NUMBER = os.getenv('TWILIO_WHATSAPP_NUMBER')
+
+
 def get_db_connection():
     conn = sqlite3.connect(DB_FILE)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+def _normalize_whatsapp_number(number: str) -> str:
+    if not number:
+        return ''
+    return number if number.startswith('whatsapp:') else f'whatsapp:{number}'
+
+
+def _get_twilio_client() -> Client:
+    if not TWILIO_ACCOUNT_SID or not TWILIO_AUTH_TOKEN:
+        raise RuntimeError('TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN must be set in environment variables')
+    return Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+
+def send_whatsapp_message(to_number: str, message: str) -> str:
+    if not to_number or not message:
+        raise ValueError('Recipient number and message are required')
+
+    from_whatsapp = _normalize_whatsapp_number(TWILIO_WHATSAPP_NUMBER)
+    to_whatsapp = _normalize_whatsapp_number(to_number)
+
+    if not from_whatsapp:
+        raise RuntimeError('TWILIO_WHATSAPP_NUMBER must be set in environment variables')
+
+    client = _get_twilio_client()
+    twilio_message = client.messages.create(
+        body=message,
+        from_=from_whatsapp,
+        to=to_whatsapp,
+    )
+    return twilio_message.sid
+
 
 @app.route('/')
 def home():
@@ -261,8 +299,11 @@ def send_message():
     user_id = request.form.get('user_id')
     message = request.form.get('message')
     if user_id and message:
-        from core.chatbot import send_whatsapp_message
-        send_whatsapp_message(user_id, message)
+        try:
+            send_whatsapp_message(user_id, message)
+        except Exception as e:
+            print(f"[Twilio] Failed to send WhatsApp message to {user_id}: {e}")
+            return str(e), 500
         return redirect(url_for('lead_detail', user_id=user_id))
     return "Error", 400
 
