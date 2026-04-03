@@ -246,17 +246,36 @@ def favicon():
 
 @app.route('/whatsapp', methods=['POST'])
 def whatsapp():
-    body = request.form.get('Body', '').strip()
-    sender = request.form.get('From', '').strip()
-    print(f"[WhatsApp] Incoming message from {sender}: {body}")
+    try:
+        # 1️⃣ Get incoming message and sender
+        body = request.form.get('Body', '').strip()
+        sender = request.form.get('From', '').strip()
+        print(f"[WhatsApp] Incoming message from {sender}: {body}")
 
-    if not body:
-        return "", 400
+        # 2️⃣ Validate input
+        if not body:
+            print("[WhatsApp] No message body received")
+            return "", 400
 
-    reply_text = bot.get_response(user_id=sender or 'unknown', message=body)
-    response = MessagingResponse()
-    response.message(reply_text)
-    return str(response), 200, {'Content-Type': 'application/xml'}
+        # 3️⃣ Get bot response
+        reply_text = bot.get_response(user_id=sender or 'unknown', message=body)
+        print(f"[Bot Reply] Response from bot: {reply_text!r}")
+
+        # 4️⃣ Check for empty reply
+        if not reply_text:
+            print("[WhatsApp] Bot returned empty response")
+            reply_text = "🤖 Sorry, I couldn't process your message."
+
+        # 5️⃣ Create Twilio response
+        response = MessagingResponse()
+        response.message(reply_text)
+        print("[WhatsApp] Reply sent successfully")
+
+        return str(response), 200, {'Content-Type': 'application/xml'}
+
+    except Exception as e:
+        print(f"[WhatsApp] Error handling message: {e}")
+        return "Internal Server Error", 500
 
 # simple web UI for manual testing with conversation history
 # chat_history = []  # list of (question, answer)
